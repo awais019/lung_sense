@@ -32,8 +32,7 @@ class _ImageRequestState extends State<ImageRequest> {
               context,
               MaterialPageRoute(
                 builder:
-                    (context) =>
-                        Result(result: data['detection'], image: image),
+                    (context) => Result(result: data['class'], image: image),
               ),
             );
           }
