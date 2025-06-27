@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lung_sense/image_request.dart';
+import 'package:lung_sense/history.dart';
 
 class Analysis extends StatelessWidget {
   const Analysis({super.key});
@@ -37,6 +38,33 @@ class Analysis extends StatelessWidget {
                   },
                   child: const Text(
                     "Get analysis",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
+              Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: Colors.blueGrey,
+                  borderRadius: BorderRadius.all(Radius.circular(16.0)),
+                ),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HistoryPage(),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    "History",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,

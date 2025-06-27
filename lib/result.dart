@@ -1,12 +1,20 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:lung_sense/auth.service.dart';
 
 class Result extends StatelessWidget {
   final int result;
   final File image;
+  final String fileURL;
 
-  const Result({super.key, required this.result, required this.image});
+  const Result({
+    super.key,
+    required this.result,
+    required this.image,
+    required this.fileURL,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +33,11 @@ class Result extends StatelessWidget {
             : result == 3
             ? "Squamous cell carcinoma"
             : "Unknown";
+
+    final String pdfUrl =
+        fileURL.startsWith('http')
+            ? fileURL
+            : "${AuthService.baseUrl}/$fileURL";
 
     return Scaffold(
       body: Center(
@@ -57,6 +70,22 @@ class Result extends StatelessWidget {
             Text(
               anaylsis,
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () async {
+                if (await canLaunchUrl(Uri.parse(pdfUrl))) {
+                  await launchUrl(
+                    Uri.parse(pdfUrl),
+                    mode: LaunchMode.externalApplication,
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Could not open PDF.')),
+                  );
+                }
+              },
+              child: const Text('Open PDF Report'),
             ),
           ],
         ),

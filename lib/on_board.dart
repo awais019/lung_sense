@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lung_sense/personal_details.dart';
+import 'package:lung_sense/sign_up.dart';
+import 'package:lung_sense/sign_in.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
-
-  navigateNext(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const PersonalDetails()),
-    );
-  }
+class OnBoard extends StatelessWidget {
+  const OnBoard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +42,15 @@ class Home extends StatelessWidget {
               ),
               child: TextButton(
                 onPressed: () {
-                  navigateNext(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SignUpScreen(),
+                    ),
+                  );
                 },
                 child: const Text(
-                  "Newly Diagnosed",
+                  "Sign up",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -69,31 +68,15 @@ class Home extends StatelessWidget {
               ),
               child: TextButton(
                 onPressed: () {
-                  navigateNext(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SignInScreen(),
+                    ),
+                  );
                 },
                 child: const Text(
-                  "In Remission",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 32.0),
-            Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.all(Radius.circular(16.0)),
-              ),
-              child: TextButton(
-                onPressed: () {
-                  navigateNext(context);
-                },
-                child: const Text(
-                  "High Risk",
+                  "Sign in",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

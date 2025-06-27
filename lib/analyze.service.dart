@@ -1,4 +1,5 @@
 import 'package:http/http.dart' as http;
+import 'package:lung_sense/user_store.dart';
 
 class Analyze {
   static Future<http.StreamedResponse> analyzeImage(String filePath) async {
@@ -7,6 +8,12 @@ class Analyze {
     var request = http.MultipartRequest('POST', Uri.parse(url));
 
     request.files.add(await http.MultipartFile.fromPath('image', filePath));
+
+    await UserStore().init();
+    final token = UserStore().token;
+    if (token != null) {
+      request.headers['Authorization'] = 'Bearer $token';
+    }
 
     return request.send();
   }

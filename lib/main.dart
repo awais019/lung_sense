@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:lung_sense/splash_screen.dart';
+import 'package:lung_sense/user_store.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await UserStore().init();
   runApp(const MyApp());
 }
 
