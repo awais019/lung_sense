@@ -35,7 +35,7 @@ class _HistoryPageState extends State<HistoryPage> {
       );
       if (response.statusCode == 200) {
         setState(() {
-          _history = json.decode(response.body);
+          _history = json.decode(response.body)['history'];
         });
       } else {
         setState(() {
