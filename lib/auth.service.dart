@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:lung_sense/user_store.dart';
 
@@ -17,14 +20,14 @@ class AuthService {
 
     return http.post(
       Uri.parse(url),
-      body: {
+      body: jsonEncode({
         'name': name,
         'email': email,
         'age': age,
         'weight': weight,
         'password': password,
-      },
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      }),
+      headers: {'Content-Type': 'application/json'},
     );
   }
 
@@ -37,8 +40,8 @@ class AuthService {
 
     return http.post(
       Uri.parse(url),
-      body: {'email': email, 'password': password},
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: jsonEncode({'email': email, 'password': password}),
+      headers: {'Content-Type': 'application/json'},
     );
   }
 }
