@@ -3,7 +3,11 @@ import 'package:lung_sense/user_store.dart';
 
 class Analyze {
   static Future<http.StreamedResponse> analyzeImage(String filePath) async {
-    String url = "http://10.0.0.2:8000/predict";
+    final baseUrl = UserStore().baseUrl;
+    if (baseUrl == null) {
+      throw Exception('Base URL not set');
+    }
+    String url = "$baseUrl/predict";
 
     var request = http.MultipartRequest('POST', Uri.parse(url));
 

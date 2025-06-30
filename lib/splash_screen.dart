@@ -2,6 +2,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:lung_sense/user_store.dart';
 import 'package:lung_sense/analysis.dart';
 import 'package:lung_sense/on_board.dart';
+import 'package:lung_sense/base_url_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -22,7 +23,10 @@ class SplashScreen extends StatelessWidget {
         child: Image.asset('assets/logo.jpeg'),
       ),
       animationDuration: const Duration(milliseconds: 1500),
-      nextScreen: UserStore().isLoggedIn ? const Analysis() : const OnBoard(),
+      nextScreen:
+          UserStore().baseUrl == null
+              ? const BaseUrlScreen()
+              : (UserStore().isLoggedIn ? const Analysis() : const OnBoard()),
     );
   }
 }

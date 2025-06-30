@@ -1,8 +1,7 @@
 import 'package:http/http.dart' as http;
+import 'package:lung_sense/user_store.dart';
 
 class AuthService {
-  static const String baseUrl = "http://10.0.0.2:8000";
-
   static Future<http.Response> registerUser(
     String name,
     String email,
@@ -10,6 +9,10 @@ class AuthService {
     String weight,
     String password,
   ) async {
+    final baseUrl = UserStore().baseUrl;
+    if (baseUrl == null) {
+      throw Exception('Base URL not set');
+    }
     String url = "$baseUrl/register";
 
     return http.post(
@@ -26,6 +29,10 @@ class AuthService {
   }
 
   static Future<http.Response> signInUser(String email, String password) async {
+    final baseUrl = UserStore().baseUrl;
+    if (baseUrl == null) {
+      throw Exception('Base URL not set');
+    }
     String url = "$baseUrl/signin";
 
     return http.post(
