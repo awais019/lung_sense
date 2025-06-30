@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lung_sense/on_board.dart';
 import 'package:lung_sense/user_store.dart';
 
 class BaseUrlScreen extends StatefulWidget {
@@ -32,7 +33,9 @@ class _BaseUrlScreenState extends State<BaseUrlScreen> {
     });
     await UserStore().saveBaseUrl(url);
     if (mounted) {
-      Navigator.of(context).pop(true);
+      Navigator.of(
+        context,
+      ).push(MaterialPageRoute(builder: (context) => const OnBoard()));
     }
   }
 

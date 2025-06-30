@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:lung_sense/auth.service.dart';
 import 'package:lung_sense/user_store.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -29,10 +28,10 @@ class _HistoryPageState extends State<HistoryPage> {
       _error = null;
     });
     try {
-      final url = Uri.parse('${AuthService.baseUrl}/history');
+      final url = Uri.parse('${UserStore().baseUrl}/history');
       final response = await http.get(
         url,
-        headers: {'Authorization': 'Bearer ' + (await _getToken())},
+        headers: {'Authorization': 'Bearer ${_getToken()}'},
       );
       if (response.statusCode == 200) {
         setState(() {
@@ -54,8 +53,7 @@ class _HistoryPageState extends State<HistoryPage> {
     }
   }
 
-  Future<String> _getToken() async {
-    await UserStore().init();
+  String _getToken() {
     return UserStore().token ?? '';
   }
 
@@ -88,7 +86,7 @@ class _HistoryPageState extends State<HistoryPage> {
                             final fullUrl =
                                 url.startsWith('http')
                                     ? url
-                                    : "${AuthService.baseUrl}/$url";
+                                    : "${UserStore().baseUrl}/$url";
                             if (await canLaunchUrl(Uri.parse(fullUrl))) {
                               await launchUrl(
                                 Uri.parse(fullUrl),

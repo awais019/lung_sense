@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:lung_sense/user_store.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:lung_sense/auth.service.dart';
 
 class Result extends StatelessWidget {
   final int result;
@@ -37,7 +37,7 @@ class Result extends StatelessWidget {
     final String pdfUrl =
         fileURL.startsWith('http')
             ? fileURL
-            : "${AuthService.baseUrl}/$fileURL";
+            : "${UserStore().baseUrl}/$fileURL";
 
     return Scaffold(
       body: Center(
