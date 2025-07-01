@@ -31,9 +31,10 @@ class _SignInScreenState extends State<SignInScreen> {
         _passwordController.text,
       );
       if (response.statusCode == 200) {
+        debugPrint('Sign in successful: ${response.body}');
         final data = jsonDecode(response.body);
         await UserStore().saveToken(data["token"]);
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const Analysis()),
         ); // Navigate to home screen

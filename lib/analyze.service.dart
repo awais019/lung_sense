@@ -16,7 +16,6 @@ class Analyze {
 
     await UserStore().init();
     final token = UserStore().token;
-    debugPrint('Token: $token');
     if (token != null) {
       request.headers['Authorization'] = 'Bearer $token';
     }

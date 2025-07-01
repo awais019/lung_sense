@@ -107,8 +107,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your age';
                       }
-                      if (int.tryParse(value) == null) {
+                      final parsed = int.tryParse(value);
+                      if (parsed == null) {
                         return 'Please enter a valid number';
+                      }
+                      if (parsed < 1 || parsed > 100) {
+                        return 'Age must be between 1 and 100';
                       }
                       return null;
                     },
@@ -187,12 +191,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         data['token'],
                                       );
                                       if (mounted) {
-                                        Navigator.pushReplacement(
+                                        Navigator.of(
                                           context,
+                                        ).pushAndRemoveUntil(
                                           MaterialPageRoute(
                                             builder:
                                                 (context) => const Analysis(),
                                           ),
+                                          (Route<dynamic> route) => false,
                                         );
                                       }
                                     } else {

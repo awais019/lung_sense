@@ -1,8 +1,6 @@
-import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
-import 'package:http/http.dart' as http;
 import 'package:lung_sense/user_store.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class AuthService {
   static Future<http.Response> registerUser(
