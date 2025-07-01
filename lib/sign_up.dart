@@ -190,6 +190,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       await UserStore().saveToken(
                                         data['token'],
                                       );
+                                      if (data['name'] != null) {
+                                        await UserStore().saveUserName(
+                                          data['name'],
+                                        );
+                                      }
                                       if (mounted) {
                                         Navigator.of(
                                           context,

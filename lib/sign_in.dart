@@ -34,6 +34,9 @@ class _SignInScreenState extends State<SignInScreen> {
         debugPrint('Sign in successful: ${response.body}');
         final data = jsonDecode(response.body);
         await UserStore().saveToken(data["token"]);
+        if (data["name"] != null) {
+          await UserStore().saveUserName(data["name"]);
+        }
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const Analysis()),

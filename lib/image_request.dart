@@ -33,9 +33,12 @@ class _ImageRequestState extends State<ImageRequest> {
               MaterialPageRoute(
                 builder:
                     (context) => Result(
-                      result: data['prediction'],
+                      prediction: data['prediction'],
+                      riskLevel: data['risk_level'] ?? 'Unknown',
+                      nextScan: data['next_scan'] ?? '-',
+                      lastScanDate: data['last_scan_date'] ?? '-',
+                      reportUrl: data['report_url'],
                       image: image,
-                      fileURL: data['report_url'],
                     ),
               ),
             );
@@ -68,9 +71,12 @@ class _ImageRequestState extends State<ImageRequest> {
               MaterialPageRoute(
                 builder:
                     (context) => Result(
-                      result: data['prediction'],
+                      prediction: data['prediction'],
+                      riskLevel: data['risk_level'] ?? 'Unknown',
+                      nextScan: data['next_scan'] ?? '-',
+                      lastScanDate: data['last_scan_date'] ?? '-',
+                      reportUrl: data['report_url'],
                       image: image,
-                      fileURL: data['report_url'],
                     ),
               ),
             );

@@ -11,6 +11,9 @@ class UserStore {
   static const String _baseUrlKey = 'base_url';
   String? _baseUrl;
 
+  static const String _userNameKey = 'user_name';
+  String? _userName;
+
   Future<void> saveToken(String token) async {
     _token = token;
     final prefs = await SharedPreferences.getInstance();
@@ -40,9 +43,18 @@ class UserStore {
     await prefs.remove(_baseUrlKey);
   }
 
+  Future<void> saveUserName(String name) async {
+    _userName = name;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_userNameKey, name);
+  }
+
+  String? get userName => _userName;
+
   Future<void> init() async {
     final prefs = await SharedPreferences.getInstance();
     _token = prefs.getString(_tokenKey);
     _baseUrl = prefs.getString(_baseUrlKey);
+    _userName = prefs.getString(_userNameKey);
   }
 }

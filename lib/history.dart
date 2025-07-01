@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:lung_sense/user_store.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:lung_sense/result.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key});
@@ -80,19 +80,20 @@ class _HistoryPageState extends State<HistoryPage> {
                       subtitle: Text(item['created_at'] ?? ''),
                       trailing: IconButton(
                         icon: const Icon(Icons.picture_as_pdf),
-                        onPressed: () async {
+                        onPressed: () {
                           final url = item['report_url'];
                           if (url != null && url.isNotEmpty) {
                             final fullUrl =
                                 url.startsWith('http')
                                     ? url
                                     : "${UserStore().baseUrl}/$url";
-                            if (await canLaunchUrl(Uri.parse(fullUrl))) {
-                              await launchUrl(
-                                Uri.parse(fullUrl),
-                                mode: LaunchMode.externalApplication,
-                              );
-                            }
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder:
+                                    (context) => PdfViewerPage(pdfUrl: fullUrl),
+                              ),
+                            );
                           }
                         },
                       ),
