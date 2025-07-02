@@ -135,6 +135,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       if (double.tryParse(value) == null) {
                         return 'Please enter a valid number';
                       }
+
+                      if (double.parse(value) <= 0) {
+                        return 'Weight must be greater than 0';
+                      }
+                      if (double.parse(value) > 200) {
+                        return 'Weight must be less than 200 kg';
+                      }
+
                       return null;
                     },
                   ),

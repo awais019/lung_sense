@@ -86,7 +86,7 @@ class _HistoryPageState extends State<HistoryPage> {
                             final fullUrl =
                                 url.startsWith('http')
                                     ? url
-                                    : "${UserStore().baseUrl}/$url";
+                                    : "${UserStore().baseUrl}$url";
                             Navigator.push(
                               context,
                               MaterialPageRoute(

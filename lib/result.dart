@@ -71,7 +71,7 @@ class Result extends StatelessWidget {
     final String pdfUrl =
         reportUrl.startsWith('http')
             ? reportUrl
-            : "${UserStore().baseUrl}/$reportUrl";
+            : "${UserStore().baseUrl}$reportUrl";
     return Scaffold(
       backgroundColor: const Color(0xFF0B2347),
       body: SafeArea(
