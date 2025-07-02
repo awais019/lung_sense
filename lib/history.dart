@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:lung_sense/pdf_viewer.dart';
 import 'dart:convert';
 import 'package:lung_sense/user_store.dart';
 import 'package:lung_sense/result.dart';

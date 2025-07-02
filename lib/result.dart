@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lung_sense/history.dart';
+import 'package:lung_sense/pdf_viewer.dart';
 import 'package:lung_sense/user_store.dart';
 import 'dart:io';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 
@@ -275,23 +275,6 @@ class Result extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class PdfViewerPage extends StatelessWidget {
-  final String pdfUrl;
-  const PdfViewerPage({super.key, required this.pdfUrl});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('PDF Report'),
-        backgroundColor: const Color(0xFF0B2347),
-      ),
-      body: SfPdfViewer.network(pdfUrl),
-      backgroundColor: const Color(0xFF0B2347),
     );
   }
 }
